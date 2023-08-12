@@ -2,7 +2,7 @@
 function validateForm(){
     let producto = document.getElementById("producto").value;
     let precio = document.getElementById("precio").value;
-    let address = document.getElementById("address").value;
+    let stock = document.getElementById("stock").value;
     let email = document.getElementById("email").value;
     
     if(producto == ""){
@@ -18,10 +18,15 @@ function validateForm(){
         alert("Precio debe ser un numero positivo");
         return false;
     }
-    if(address == ""){
-        alert("Address is required");
+    if(stock == ""){
+        alert("Ingrese Stock");
         return false;
     }
+    else if(stock < 1){
+        alert("El stock no puede ser un numero negativo");
+        return false;
+    }
+
     if(email == ""){
         alert("Email is required");
         return false;
@@ -51,7 +56,7 @@ function showData(){
         html +="<tr>";
         html +="<td>" + element.producto + "</td>";
         html +="<td>" + element.precio + "</td>";
-        html +="<td>" + element.address + "</td>";
+        html +="<td>" + element.stock + "</td>";
         html +="<td>" + element.email + "</td>";
         html += '<td><button onclick="deleteData('+index+')" class="btn btn-danger">Borrar</button><button onclick = "updateData('+index+')" class="btn btn-warning m-2">Editar</button></td>';
         html +="</tr>";
@@ -71,7 +76,7 @@ function AddData(){
     if(validateForm() == true){
         let producto = document.getElementById("producto").value;
         let precio = document.getElementById("precio").value;
-        let address = document.getElementById("address").value;
+        let stock = document.getElementById("stock").value;
         let email = document.getElementById("email").value;
 
         let peopleList;
@@ -84,7 +89,7 @@ function AddData(){
         peopleList.push({
             producto: producto,
             precio: precio,
-            address: address,
+            stock: stock,
             email: email,
         })
 
@@ -92,7 +97,7 @@ function AddData(){
         showData();
         document.getElementById("producto").value = "";
         document.getElementById("precio").value = "";
-        document.getElementById("address").value = "";
+        document.getElementById("stock").value = "";
         document.getElementById("email").value = "";
     }
 }
@@ -130,14 +135,14 @@ function updateData(index){
     console.log(index)
     document.getElementById("prodcuto").value = peopleList[index].producto;
     document.getElementById("precio").value = peopleList[index].precio;
-    document.getElementById("address").value = peopleList[index].address;
+    document.getElementById("stock").value = peopleList[index].stock;
     document.getElementById("email").value = peopleList[index].email;
 
     document.querySelector("#Update").onclick = function(){
         if(validateForm() == true) {
             peopleList[index].producto = document.getElementById("producto").value;
             peopleList[index].precio = document.getElementById("precio").value;
-            peopleList[index].address = document.getElementById("address").value;
+            peopleList[index].stock = document.getElementById("stock").value;
             peopleList[index].email = document.getElementById("email").value;
 
             localStorage.setItem("peopleList", JSON.stringify(peopleList));
@@ -146,7 +151,7 @@ function updateData(index){
 
             document.getElementById("producto").value = "";
             document.getElementById("precio").value = "";
-            document.getElementById("address").value = "";
+            document.getElementById("stock").value = "";
             document.getElementById("email").value = "";
 
             document.getElementById("Submit").style.display = "block";
