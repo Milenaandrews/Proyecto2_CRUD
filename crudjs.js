@@ -1,4 +1,4 @@
-//Validate form inputs before submiting data
+//funcion para validar los datos
 function validateForm(){
     let producto = document.getElementById("producto").value;
     let precio = document.getElementById("precio").value;
@@ -37,7 +37,7 @@ function validateForm(){
 
     
 
-        // function to show data from local storage
+//! Funcion para mostrar la informacion del local storage
 function showData(){
     let peopleList ;
     if(localStorage.getItem("peopleList") == null){
@@ -48,6 +48,8 @@ function showData(){
     }
 
     let html = "";
+
+//! esto es lo que se me va a mostrar en mi html
 
     peopleList.forEach(function(element, index){
         html +="<tr>";
@@ -63,11 +65,12 @@ function showData(){
 
 }
 
-//Loads all data from local storage when document or page load
+
+//! cuando cargue la pagina, esto me permite cargar lo q este guardado en mi local storage
 
 document.onload = showData();
 
-//funcion para agregar data
+//!funcion para agregar data
 
 function AddData(){
     if(validateForm() == true){
@@ -114,9 +117,10 @@ function deleteData(index){
     showData();
 }
 
-// funcion para editar informacion en el local storage
+//! funcion para editar informacion en el local storage
 function updateData(index){
-    //el boton de Agregar se esconde y aparace el boton de update, para actualizar la info que esta en el local storage
+
+    //?el boton de Agregar se esconde y aparace el boton de update, para actualizar la info que esta en el local storage
 
     document.getElementById("Submit").style.display = "none";
     document.getElementById("Update").style.display = "block";
@@ -128,8 +132,10 @@ function updateData(index){
     peopleList = JSON.parse(localStorage.getItem("peopleList"))
     }
 
-    console.log(peopleList)
-    console.log(index)
+    //console.log para ver como estan organizados los objetos 
+    // console.log(peopleList)
+    // console.log(index)
+
     document.getElementById("prodcuto").value = peopleList[index].producto;
     document.getElementById("precio").value = peopleList[index].precio;
     document.getElementById("stock").value = peopleList[index].stock;
