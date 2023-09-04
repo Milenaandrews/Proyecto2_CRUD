@@ -136,7 +136,7 @@ function updateData(index){
     // console.log(peopleList)
     // console.log(index)
 
-    document.getElementById("prodcuto").value = peopleList[index].producto;
+    document.getElementById("producto").value = peopleList[index].producto;
     document.getElementById("precio").value = peopleList[index].precio;
     document.getElementById("stock").value = peopleList[index].stock;
     document.getElementById("fecha").value = peopleList[index].fecha;
